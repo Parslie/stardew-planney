@@ -9,34 +9,79 @@ public class CanvasViewer : MonoBehaviour
     [SerializeField] private int canvasMargin;
 
     // Zoom is half of viewport height
-    private float minZoom = 2;
+    private float minZoom;
     private float maxZoom;
-    private float currentZoom;
+    private float prevZoom;
+
+    private Vector2 minPosition;
+    private Vector2 maxPosition;
+    private Vector2 currentPosition;
+    private Vector2 originalMousePosition;
 
     private new Camera camera;
+    private float prevCameraAspect;
 
-    private void Awake()
+    private void CalculatePositionBounds()
     {
-        camera = GetComponent<Camera>();
+        Bounds canvasBounds = canvasSprite.bounds;
+        Vector2 cameraHalfSize = new Vector2(camera.orthographicSize * camera.aspect, camera.orthographicSize);
+
+        minPosition.x = canvasBounds.min.x - canvasMargin + cameraHalfSize.x;
+        maxPosition.x = canvasBounds.max.x + canvasMargin - cameraHalfSize.x;
+        minPosition.y = canvasBounds.min.y - canvasMargin + cameraHalfSize.y;
+        maxPosition.y = canvasBounds.max.y + canvasMargin - cameraHalfSize.y;
     }
 
-    private void Start()
+    private void CalculateZoomBounds()
     {
         Bounds canvasBounds = canvasSprite.bounds;
 
-        // Set default position
-        transform.position = canvasBounds.center;
+        float maxZoomHorizontal = (canvasBounds.size.x / 2 + canvasMargin) / camera.aspect;
+        float maxZoomVertical = canvasBounds.size.y / 2 + canvasMargin;
 
-        // Set default zoom
-        maxZoom = canvasBounds.size.y / 2 + canvasMargin;
-        currentZoom = maxZoom;
+        minZoom = 2;
+        maxZoom = Mathf.Min(maxZoomVertical, maxZoomHorizontal);
+    }
+
+    //////////////////
+    // Unity Functions
+
+    private void Start()
+    {
+        camera = GetComponent<Camera>();
+
+        CalculateZoomBounds();
+        camera.orthographicSize = maxZoom;
+
+        CalculatePositionBounds();
+        currentPosition = canvasSprite.bounds.center;
+
+        prevZoom = camera.orthographicSize;
+        prevCameraAspect = camera.aspect;
     }
 
     private void Update()
     {
-        float deltaZoom = -Input.mouseScrollDelta.y;
-        currentZoom = Mathf.Clamp(currentZoom + deltaZoom, minZoom, maxZoom);
+        // Change current zoom
+        if (prevCameraAspect != camera.aspect)
+            CalculateZoomBounds();
+        camera.orthographicSize = Mathf.Clamp(camera.orthographicSize - Input.mouseScrollDelta.y, minZoom, maxZoom);
 
-        camera.orthographicSize = currentZoom;
+        // Change current position
+        if (prevZoom != camera.orthographicSize || prevCameraAspect != camera.aspect)
+            CalculatePositionBounds();
+
+        if (Input.GetMouseButtonDown(2))
+            originalMousePosition = camera.ScreenToWorldPoint(Input.mousePosition);
+        else if (Input.GetMouseButton(2))
+            currentPosition += originalMousePosition - (Vector2)camera.ScreenToWorldPoint(Input.mousePosition);
+
+        currentPosition.x = Mathf.Clamp(currentPosition.x, minPosition.x, maxPosition.x);
+        currentPosition.y = Mathf.Clamp(currentPosition.y, minPosition.y, maxPosition.y);
+        transform.position = currentPosition;
+
+        // Prepare re-calculation
+        prevZoom = camera.orthographicSize;
+        prevCameraAspect = camera.aspect;
     }
 }
