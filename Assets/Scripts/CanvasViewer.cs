@@ -62,11 +62,14 @@ public class CanvasViewer : MonoBehaviour
 
     private void Update()
     {
+        // TODO: change zoom speed depending on current zoom (faster the more zoomed out you are)
+        // TODO: test having zoom bounds be based on Mathf.Max instead
         // Change current zoom
         if (prevCameraAspect != camera.aspect)
             CalculateZoomBounds();
         camera.orthographicSize = Mathf.Clamp(camera.orthographicSize - Input.mouseScrollDelta.y, minZoom, maxZoom);
 
+        // TODO: test having bounds be directly on the corners of the canvas
         // Change current position
         if (prevZoom != camera.orthographicSize || prevCameraAspect != camera.aspect)
             CalculatePositionBounds();

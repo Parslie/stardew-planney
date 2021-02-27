@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasSprite: {fileID: 1848029380}
-  canvasMargin: 1
+  canvasMargin: 4
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -312,6 +312,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 852668826}
+  - component: {fileID: 852668827}
   m_Layer: 0
   m_Name: Layout Canvas
   m_TagString: Untagged
@@ -336,6 +337,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &852668827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 852668825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 888b02d790060d04e85ac1bc5baf79b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectionGrid: {fileID: 1359164952}
 --- !u!1 &1359164950
 GameObject:
   m_ObjectHideFlags: 0
