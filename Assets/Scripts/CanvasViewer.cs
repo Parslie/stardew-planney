@@ -9,7 +9,8 @@ public class CanvasViewer : MonoBehaviour
     [SerializeField] private int canvasMargin;
 
     // Zoom is half of viewport height
-    private float minZoom = 3;
+    [SerializeField] private float zoomSpeed;
+    [SerializeField] private float minZoom;
     private float maxZoom;
 
     private Vector2 minPosition;
@@ -57,11 +58,13 @@ public class CanvasViewer : MonoBehaviour
 
     private void Update()
     {
-        // TODO: change zoom speed depending on current zoom (faster the more zoomed out you are)
         // Change current zoom
         if (prevCameraAspect != camera.aspect)
             CalculateZoomBounds();
-        camera.orthographicSize = Mathf.Clamp(camera.orthographicSize - Input.mouseScrollDelta.y, minZoom, maxZoom);
+
+        // Cheat way of handling dynamic zoom speed (works for low values of zoomSpeed)
+        float zoomDelta = Input.mouseScrollDelta.y * zoomSpeed * camera.orthographicSize;
+        camera.orthographicSize = Mathf.Clamp(camera.orthographicSize - zoomDelta, minZoom, maxZoom);
 
         // Change current position
         if (Input.GetMouseButtonDown(2))

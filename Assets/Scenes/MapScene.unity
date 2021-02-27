@@ -164,6 +164,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvasSprite: {fileID: 1848029380}
   canvasMargin: 4
+  zoomSpeed: 1
+  minZoom: 4
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
