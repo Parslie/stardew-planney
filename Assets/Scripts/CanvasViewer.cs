@@ -9,9 +9,8 @@ public class CanvasViewer : MonoBehaviour
     [SerializeField] private int canvasMargin;
 
     // Zoom is half of viewport height
-    private float minZoom;
+    private float minZoom = 3;
     private float maxZoom;
-    private float prevZoom;
 
     private Vector2 minPosition;
     private Vector2 maxPosition;
@@ -24,12 +23,10 @@ public class CanvasViewer : MonoBehaviour
     private void CalculatePositionBounds()
     {
         Bounds canvasBounds = canvasSprite.bounds;
-        Vector2 cameraHalfSize = new Vector2(camera.orthographicSize * camera.aspect, camera.orthographicSize);
-
-        minPosition.x = canvasBounds.min.x - canvasMargin + cameraHalfSize.x;
-        maxPosition.x = canvasBounds.max.x + canvasMargin - cameraHalfSize.x;
-        minPosition.y = canvasBounds.min.y - canvasMargin + cameraHalfSize.y;
-        maxPosition.y = canvasBounds.max.y + canvasMargin - cameraHalfSize.y;
+        minPosition.x = canvasBounds.min.x;
+        maxPosition.x = canvasBounds.max.x;
+        minPosition.y = canvasBounds.min.y;
+        maxPosition.y = canvasBounds.max.y;
     }
 
     private void CalculateZoomBounds()
@@ -39,8 +36,7 @@ public class CanvasViewer : MonoBehaviour
         float maxZoomHorizontal = (canvasBounds.size.x / 2 + canvasMargin) / camera.aspect;
         float maxZoomVertical = canvasBounds.size.y / 2 + canvasMargin;
 
-        minZoom = 2;
-        maxZoom = Mathf.Min(maxZoomVertical, maxZoomHorizontal);
+        maxZoom = Mathf.Max(maxZoomVertical, maxZoomHorizontal);
     }
 
     //////////////////
@@ -56,24 +52,18 @@ public class CanvasViewer : MonoBehaviour
         CalculatePositionBounds();
         currentPosition = canvasSprite.bounds.center;
 
-        prevZoom = camera.orthographicSize;
         prevCameraAspect = camera.aspect;
     }
 
     private void Update()
     {
         // TODO: change zoom speed depending on current zoom (faster the more zoomed out you are)
-        // TODO: test having zoom bounds be based on Mathf.Max instead
         // Change current zoom
         if (prevCameraAspect != camera.aspect)
             CalculateZoomBounds();
         camera.orthographicSize = Mathf.Clamp(camera.orthographicSize - Input.mouseScrollDelta.y, minZoom, maxZoom);
 
-        // TODO: test having bounds be directly on the corners of the canvas
         // Change current position
-        if (prevZoom != camera.orthographicSize || prevCameraAspect != camera.aspect)
-            CalculatePositionBounds();
-
         if (Input.GetMouseButtonDown(2))
             originalMousePosition = camera.ScreenToWorldPoint(Input.mousePosition);
         else if (Input.GetMouseButton(2))
@@ -84,7 +74,6 @@ public class CanvasViewer : MonoBehaviour
         transform.position = currentPosition;
 
         // Prepare re-calculation
-        prevZoom = camera.orthographicSize;
         prevCameraAspect = camera.aspect;
     }
 }
