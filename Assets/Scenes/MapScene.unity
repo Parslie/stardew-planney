@@ -164,7 +164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvasSprite: {fileID: 1848029380}
   canvasMargin: 4
-  zoomSpeed: 1
+  zoomSpeed: 0.1
   minZoom: 4
 --- !u!20 &519420031
 Camera:
@@ -505,7 +505,7 @@ SpriteRenderer:
   m_SortingLayerID: -2003603927
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 7c3447bd2572ebb4697d864291b87a7b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ef7d7e3047f7fd54ca0b34971ed0da59, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
