@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f76619f4a4aa5249bd5ae8cc6cd0dd1, type: 3}
   m_Name: Maple Tree
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
-  obstructionArea: {x: 0, y: 0}
-  obstructionOffset: {x: 0, y: 0}
-  absoluteObstructionArea: {x: 0, y: 0}
+  sprite: {fileID: 2572236292851511218, guid: 4ae04cb5077deed4fae790f5cf01a51a, type: 3}
+  obstructionArea: {x: 3, y: 3}
+  obstructionOffset: {x: -1, y: -1}
+  absoluteObstructionArea: {x: 1, y: 1}
   ignoreObstruction: 0
