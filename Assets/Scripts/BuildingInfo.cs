@@ -8,4 +8,6 @@ public class BuildingInfo : ScriptableObject
     public Sprite sprite;
     public Vector2 obstructionArea;
     public Vector2 obstructionOffset;
+    public Vector2 absoluteObstructionArea;
+    public bool ignoreObstruction;
 }
