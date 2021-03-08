@@ -5,6 +5,15 @@ TextureImporter:
   - first:
       213: 2572236292851511218
     second: Tree_Maple
+  - first:
+      213: 6224024930817484846
+    second: Trees_Pine
+  - first:
+      213: -8911251428918342384
+    second: Trees_Oak
+  - first:
+      213: 2656247834339299217
+    second: Trees_Mahogany
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -110,6 +119,69 @@ TextureImporter:
       bones: []
       spriteID: 2bf28c1b74b62b320800000000000000
       internalID: 2572236292851511218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Trees_Pine
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 48
+        height: 112
+      alignment: 9
+      pivot: {x: 0.33333334, y: 0.14285715}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e282d82c2bd206650800000000000000
+      internalID: 6224024930817484846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Trees_Oak
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 48
+        height: 112
+      alignment: 9
+      pivot: {x: 0.33333334, y: 0.14285715}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01d412b0a00e45480800000000000000
+      internalID: -8911251428918342384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Trees_Mahogany
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 48
+        height: 112
+      alignment: 9
+      pivot: {x: 0.33333334, y: 0.14285715}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19fc139f453ecd420800000000000000
+      internalID: 2656247834339299217
       vertices: []
       indices: 
       edges: []
