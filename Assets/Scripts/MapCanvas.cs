@@ -8,11 +8,24 @@ public class MapCanvas : MonoBehaviour
     private Vector2 mouseCoordinates;
     private Vector2 clickCoordinates;
 
+    [SerializeField] private ToolSelector toolSelector;
+    [SerializeField] private float toolClickLimit;
+    private float toolClickTimer;
+
+    private Building[,] buildings;
+
     //////////////////
     // Unity Functions
 
+    private void Awake()
+    {
+        buildings = new Building[420,420]; // TODO: remove, this is for debug purposes
+    }
+
     private void Update()
     {
+        Tool currentTool = toolSelector.GetCurrentTool();
+
         // Calculate mouse coordinates
         mouseCoordinates = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mouseCoordinates.x = Mathf.Floor(mouseCoordinates.x);
@@ -20,7 +33,18 @@ public class MapCanvas : MonoBehaviour
 
         // Handle click events
         if (Input.GetMouseButtonDown(0))
+        {
+            toolClickTimer = Time.time;
             clickCoordinates = mouseCoordinates;
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            if (Time.time - toolClickTimer > toolClickLimit)
+                currentTool.OnHoldRelease(clickCoordinates, mouseCoordinates - clickCoordinates, ref buildings); // TODO: fix sizing of selection
+            else
+                currentTool.OnRelease(clickCoordinates, ref buildings);
+        }
+
 
         // Change position & size of selection grid
         if (Input.GetMouseButton(0))
