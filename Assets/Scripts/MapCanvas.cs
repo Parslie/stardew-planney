@@ -36,7 +36,7 @@ public class MapCanvas : MonoBehaviour
         // Handle tool usages
         if (Input.GetMouseButtonUp(0))
         {
-            if (selectionGrid.size.x > 1 || selectionGrid.size.y > 1)
+            if (selectionGrid.bounds.size.x > 1 || selectionGrid.bounds.size.y > 1)
                 currentTool.OnHoldRelease(selectionGrid.bounds.min, selectionGrid.bounds.size, ref buildings);
             else
                 currentTool.OnRelease(clickCoordinates, ref buildings);
