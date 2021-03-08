@@ -31,20 +31,21 @@ public class MapCanvas : MonoBehaviour
         mouseCoordinates.x = Mathf.Floor(mouseCoordinates.x);
         mouseCoordinates.y = Mathf.Floor(mouseCoordinates.y);
 
-        // Handle click events
+        // Handle tool preperations
         if (Input.GetMouseButtonDown(0))
         {
             toolClickTimer = Time.time;
             clickCoordinates = mouseCoordinates;
         }
+        
+        // Handle tool usages
         if (Input.GetMouseButtonUp(0))
         {
             if (Time.time - toolClickTimer > toolClickLimit)
-                currentTool.OnHoldRelease(clickCoordinates, mouseCoordinates - clickCoordinates, ref buildings); // TODO: fix sizing of selection
+                currentTool.OnHoldRelease(selectionGrid.bounds.min, selectionGrid.bounds.size, ref buildings);
             else
                 currentTool.OnRelease(clickCoordinates, ref buildings);
         }
-
 
         // Change position & size of selection grid
         if (Input.GetMouseButton(0))
