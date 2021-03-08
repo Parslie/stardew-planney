@@ -26,12 +26,12 @@ public class Building : MonoBehaviour
 
     public static Building Create(Vector2 position, BuildingInfo info)
     {
-        Building building = new GameObject(info.buildingName, typeof(Building)).GetComponent<Building>();
+        Building building = new GameObject(info.name, typeof(Building)).GetComponent<Building>();
         SpriteRenderer buildingRenderer = building.GetComponent<SpriteRenderer>();
 
         building.transform.position = position;
         building.obstructionAreaOrigin = building.transform.position + (Vector3)info.obstructionOffset;
-        building.obstructionAreaSize = info.obstructionArea;
+        building.obstructionAreaSize = info.obstructionSize;
 
         buildingRenderer.sprite = info.sprite;
         buildingRenderer.sortingOrder = -(int)position.y;

@@ -5,11 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Building", menuName = "Stardew/Building")]
 public class BuildingInfo : ScriptableObject
 {
-    public string buildingName;
+    public new string name;
     public Sprite sprite;
-    public Vector2 obstructionArea;
     public Vector2 obstructionOffset;
-    public Vector2 absoluteObstructionArea;
+    public Vector2 obstructionSize;
+    public Vector2 absoluteObstructionSize;
     public bool ignoreObstruction;
-    public bool allowMultiPlacing;
 }

@@ -13,7 +13,7 @@ public class BuildingTool : Tool
 
     public override string GetName()
     {
-        return info.buildingName;
+        return info.name;
     }
 
     public override void OnRelease(Vector2 position, ref Building[,] buildings)
@@ -36,9 +36,9 @@ public class BuildingTool : Tool
     {
         // Check if there's nothing obstructing building
         bool isObstructed = false;
-        for (int x = (int)info.obstructionOffset.x; x < info.obstructionArea.x + info.obstructionOffset.x && !isObstructed; x++)
+        for (int x = (int)info.obstructionOffset.x; x < info.obstructionSize.x + info.obstructionOffset.x && !isObstructed; x++)
         {
-            for (int y = (int)info.obstructionOffset.y; y < info.obstructionArea.y + info.obstructionOffset.y && !isObstructed; y++)
+            for (int y = (int)info.obstructionOffset.y; y < info.obstructionSize.y + info.obstructionOffset.y && !isObstructed; y++)
             {
                 isObstructed = buildings[(int)position.x + x, (int)position.y + y] != null;
             }
@@ -49,8 +49,8 @@ public class BuildingTool : Tool
         {
             Building building = Building.Create(position, info);
 
-            for (int x = (int)info.obstructionOffset.x; x < info.obstructionArea.x + info.obstructionOffset.x; x++)
-                for (int y = (int)info.obstructionOffset.y; y < info.obstructionArea.y + info.obstructionOffset.y; y++)
+            for (int x = (int)info.obstructionOffset.x; x < info.obstructionSize.x + info.obstructionOffset.x; x++)
+                for (int y = (int)info.obstructionOffset.y; y < info.obstructionSize.y + info.obstructionOffset.y; y++)
                     buildings[(int)position.x + x, (int)position.y + y] = building;
         }
     }
