@@ -9,8 +9,6 @@ public class MapCanvas : MonoBehaviour
     private Vector2 clickCoordinates;
 
     [SerializeField] private ToolSelector toolSelector;
-    [SerializeField] private float toolClickLimit;
-    private float toolClickTimer;
 
     private Building[,] buildings;
 
@@ -33,15 +31,12 @@ public class MapCanvas : MonoBehaviour
 
         // Handle tool preperations
         if (Input.GetMouseButtonDown(0))
-        {
-            toolClickTimer = Time.time;
             clickCoordinates = mouseCoordinates;
-        }
         
         // Handle tool usages
         if (Input.GetMouseButtonUp(0))
         {
-            if (Time.time - toolClickTimer > toolClickLimit)
+            if (selectionGrid.size.x > 1 || selectionGrid.size.y > 1)
                 currentTool.OnHoldRelease(selectionGrid.bounds.min, selectionGrid.bounds.size, ref buildings);
             else
                 currentTool.OnRelease(clickCoordinates, ref buildings);
