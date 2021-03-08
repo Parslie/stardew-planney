@@ -20,6 +20,12 @@ public class ToolSelector : MonoBehaviour
         currentToolText.text = "Current Tool: " + currentTool.GetName();
     }
 
+    public void SetBuildingTool(BuildingInfo info)
+    {
+        currentTool = new BuildingTool(info);
+        currentToolText.text = "Current Tool: " + currentTool.GetName();
+    }
+
     //////////////////
     // Unity Functions
 

@@ -9,10 +9,9 @@ public class Building : MonoBehaviour
     private Vector2 obstructionAreaSize;
     private new SpriteRenderer renderer;
 
-    // TODO: implement as a object pool item
     public void Delete()
     {
-        Destroy(gameObject); 
+        Destroy(gameObject);
     }
 
     public void PickUp()
@@ -25,13 +24,20 @@ public class Building : MonoBehaviour
 
     }
 
-    // TODO: implement as a object pool item
-    public void Create(Vector2 position, BuildingInfo info)
+    public static Building Create(Vector2 position, BuildingInfo info)
     {
-        transform.position = position;
-        renderer.sprite = info.sprite;
-        obstructionAreaOrigin = transform.InverseTransformPoint(info.obstructionOffset);
-        obstructionAreaSize = info.obstructionArea;
+        Building building = new GameObject(info.buildingName, typeof(Building)).GetComponent<Building>();
+        SpriteRenderer buildingRenderer = building.GetComponent<SpriteRenderer>();
+
+        building.transform.position = position;
+        building.obstructionAreaOrigin = building.transform.position + (Vector3)info.obstructionOffset;
+        building.obstructionAreaSize = info.obstructionArea;
+
+        buildingRenderer.sprite = info.sprite;
+        buildingRenderer.sortingOrder = -(int)position.y;
+        buildingRenderer.sortingLayerName = "Foreground";
+
+        return building;
     }
 
     private bool IsHoveringBehind()
@@ -54,13 +60,9 @@ public class Building : MonoBehaviour
     //////////////////
     // Unity Functions
 
-    private void Start()
+    private void Awake()
     {
         renderer = GetComponent<SpriteRenderer>();
-
-        // TODO: REMOVE; THIS IS FOR DEBUGGING ONLY!
-        obstructionAreaOrigin = transform.position - new Vector3(1, 1, 0);
-        obstructionAreaSize = Vector2.one * 3;
     }
 
     private void Update()

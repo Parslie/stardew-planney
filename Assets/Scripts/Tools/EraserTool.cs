@@ -18,7 +18,7 @@ public class EraserTool : Tool
         if (building != null)
             building.Delete();
 
-        buildings[(int)position.x, (int)position.y] = null;
+        buildings[(int)position.x, (int)position.y] = null; // TODO: go over all of this object's obstruction area (if that pos contains building) (if not already null)
     }
 
     public override void OnHoldRelease(Vector2 position, Vector2 selectionSize, ref Building[,] buildings)
@@ -34,7 +34,7 @@ public class EraserTool : Tool
                 if (building != null)
                     building.Delete();
 
-                buildings[x, y] = null;
+                buildings[x, y] = null; // TODO: go over all of this object's obstruction area (if that pos contains building) (if not already null)
             }
         }
     }
