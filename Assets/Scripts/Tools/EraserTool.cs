@@ -9,6 +9,11 @@ public class EraserTool : Tool
         return "Eraser";
     }
 
+    public override Sprite GetPreviewSprite()
+    {
+        return null;
+    }
+
     public override void OnRelease(Vector2 position, ref Building[,] buildings)
     {
         Debug.Log("On Release: " + GetName());

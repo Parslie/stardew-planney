@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class MapCanvas : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer selectionGrid;
+    [SerializeField] private SpriteRenderer toolGrid;
+    [SerializeField] private SpriteRenderer toolPreviewer;
     private Vector2 mouseCoordinates;
     private Vector2 clickCoordinates;
 
@@ -36,29 +37,33 @@ public class MapCanvas : MonoBehaviour
         // Handle tool usages
         if (Input.GetMouseButtonUp(0))
         {
-            if (selectionGrid.bounds.size.x > 1 || selectionGrid.bounds.size.y > 1)
-                currentTool.OnHoldRelease(selectionGrid.bounds.min, selectionGrid.bounds.size, ref buildings);
+            if (toolGrid.bounds.size.x > 1 || toolGrid.bounds.size.y > 1)
+                currentTool.OnHoldRelease(toolGrid.bounds.min, toolGrid.bounds.size, ref buildings);
             else
                 currentTool.OnRelease(clickCoordinates, ref buildings);
         }
 
-        // Change position & size of selection grid
+        // Update tool previewer
+        toolPreviewer.transform.position = mouseCoordinates;
+        toolPreviewer.sprite = currentTool.GetPreviewSprite();
+
+        // Update tool grid
         if (Input.GetMouseButton(0))
         {
             Vector2 selectionSize = mouseCoordinates - clickCoordinates;
             selectionSize.x += Mathf.Sign(selectionSize.x);
             selectionSize.y += Mathf.Sign(selectionSize.y);
-            selectionGrid.size = selectionSize;
+            toolGrid.size = selectionSize;
 
             Vector2 selectionOffset;
             selectionOffset.x = (selectionSize.x < 0) ? 1 : 0;
             selectionOffset.y = (selectionSize.y < 0) ? 1 : 0;
-            selectionGrid.transform.position = clickCoordinates + selectionOffset;
+            toolGrid.transform.position = clickCoordinates + selectionOffset;
         }
         else
         {
-            selectionGrid.size = Vector2.one;
-            selectionGrid.transform.position = mouseCoordinates;
+            toolGrid.size = Vector2.one;
+            toolGrid.transform.position = mouseCoordinates;
         }
     }
 }

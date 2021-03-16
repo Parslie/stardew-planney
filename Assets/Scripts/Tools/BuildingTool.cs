@@ -16,6 +16,11 @@ public class BuildingTool : Tool
         return info.name;
     }
 
+    public override Sprite GetPreviewSprite()
+    {
+        return info.sprite;
+    }
+
     public override void OnRelease(Vector2 position, ref Building[,] buildings)
     {
         Debug.Log("On Release: " + GetName());

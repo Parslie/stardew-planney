@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f76619f4a4aa5249bd5ae8cc6cd0dd1, type: 3}
+  m_Name: Earth Obelisk
+  m_EditorClassIdentifier: 
+  name: Earth Obelisk
+  sprite: {fileID: -5075879681021990956, guid: 8e57d022149f68d47abf9a9ca8e438f7, type: 3}
+  obstructionOffset: {x: -1, y: 0}
+  obstructionSize: {x: 3, y: 2}
+  absoluteObstructionSize: {x: 3, y: 2}
+  ignoreObstruction: 0
