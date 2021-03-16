@@ -14,7 +14,7 @@ public class EraserTool : Tool
         return null;
     }
 
-    public override void OnRelease(Vector2 position, ref Building[,] buildings)
+    public override void OnRelease(Vector2 position, ref Building[,] buildings, bool[,] obstructions)
     {
         Debug.Log("On Release: " + GetName());
 
@@ -26,7 +26,7 @@ public class EraserTool : Tool
         buildings[(int)position.x, (int)position.y] = null; // TODO: go over all of this object's obstruction area (if that pos contains building) (if not already null)
     }
 
-    public override void OnHoldRelease(Vector2 position, Vector2 selectionSize, ref Building[,] buildings)
+    public override void OnHoldRelease(Vector2 position, Vector2 selectionSize, ref Building[,] buildings, bool[,] obstructions)
     {
         Debug.Log("On Release Hold: " + GetName());
 

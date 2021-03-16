@@ -21,23 +21,23 @@ public class BuildingTool : Tool
         return info.sprite;
     }
 
-    public override void OnRelease(Vector2 position, ref Building[,] buildings)
+    public override void OnRelease(Vector2 position, ref Building[,] buildings, bool[,] obstructions)
     {
         Debug.Log("On Release: " + GetName());
 
-        Create(position, ref buildings);
+        Create(position, ref buildings, obstructions);
     }
 
-    public override void OnHoldRelease(Vector2 position, Vector2 selectionSize, ref Building[,] buildings)
+    public override void OnHoldRelease(Vector2 position, Vector2 selectionSize, ref Building[,] buildings, bool[,] obstructions)
     {
         Debug.Log("On Release Hold: " + GetName());
 
         for (int x = (int)position.x; x < position.x + selectionSize.x; x++)
             for (int y = (int)position.y; y < position.y + selectionSize.y; y++)
-                Create(new Vector2(x, y), ref buildings);
+                Create(new Vector2(x, y), ref buildings, obstructions);
     }
 
-    private void Create(Vector2 position, ref Building[,] buildings)
+    private void Create(Vector2 position, ref Building[,] buildings, bool[,] obstructions)
     {
         // Check if there's nothing obstructing building
         bool isObstructed = false;
@@ -45,7 +45,9 @@ public class BuildingTool : Tool
         {
             for (int y = (int)info.obstructionOffset.y; y < info.obstructionSize.y + info.obstructionOffset.y && !isObstructed; y++)
             {
-                isObstructed = buildings[(int)position.x + x, (int)position.y + y] != null;
+                int actualX = (int)position.x + x;
+                int actualY = (int)position.y + y;
+                isObstructed = buildings[actualX, actualY] != null || obstructions[actualX, actualY];
             }
         }
 

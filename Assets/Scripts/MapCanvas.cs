@@ -4,21 +4,46 @@ using UnityEngine;
 
 public class MapCanvas : MonoBehaviour
 {
+    [SerializeField] private Map defaultMap;
+    [SerializeField] private SpriteRenderer mapRenderer;
+
+    [Header("Tools")]
+    [SerializeField] private ToolSelector toolSelector;
     [SerializeField] private SpriteRenderer toolGrid;
     [SerializeField] private SpriteRenderer toolPreviewer;
     private Vector2 mouseCoordinates;
     private Vector2 clickCoordinates;
 
-    [SerializeField] private ToolSelector toolSelector;
-
+    private bool[,] obstructions;
     private Building[,] buildings;
+
+    private void SetMap(Map map)
+    {
+        mapRenderer.sprite = map.sprite;
+
+        // Delete all previous buildings
+        if(buildings != null)
+            for (int x = 0; x < buildings.GetLength(0); x++)
+                for (int y = 0; y < buildings.GetLength(1); y++)
+                    buildings[x, y].Delete();
+
+        // Init variables
+        buildings = new Building[map.size.x, map.size.y];
+        obstructions = new bool[map.size.x, map.size.y];
+
+        // Init obstructions
+        if(map.obstructionMap != null)
+            for(int x = 0; x < map.size.x; x++)
+                for(int y = 0; y < map.size.y; y++)
+                    obstructions[x, y] = map.obstructionMap.GetPixel(x, y) == Color.black;
+    }
 
     //////////////////
     // Unity Functions
 
-    private void Awake()
+    private void Start()
     {
-        buildings = new Building[420,420]; // TODO: remove, this is for debug purposes
+        SetMap(defaultMap);
     }
 
     private void Update()
@@ -38,9 +63,9 @@ public class MapCanvas : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             if (toolGrid.bounds.size.x > 1 || toolGrid.bounds.size.y > 1)
-                currentTool.OnHoldRelease(toolGrid.bounds.min, toolGrid.bounds.size, ref buildings);
+                currentTool.OnHoldRelease(toolGrid.bounds.min, toolGrid.bounds.size, ref buildings, obstructions);
             else
-                currentTool.OnRelease(clickCoordinates, ref buildings);
+                currentTool.OnRelease(clickCoordinates, ref buildings, obstructions);
         }
 
         // Update tool previewer

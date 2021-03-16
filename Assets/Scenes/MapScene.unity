@@ -2599,9 +2599,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 888b02d790060d04e85ac1bc5baf79b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultMap: {fileID: 11400000, guid: 1b6807a1c90c5744bb26d3781bd73391, type: 2}
+  mapRenderer: {fileID: 1848029380}
+  toolSelector: {fileID: 761144555}
   toolGrid: {fileID: 1359164952}
   toolPreviewer: {fileID: 786489628}
-  toolSelector: {fileID: 761144555}
 --- !u!1 &888797449
 GameObject:
   m_ObjectHideFlags: 0
