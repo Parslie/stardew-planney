@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-guid: 4ae04cb5077deed4fae790f5cf01a51a
+guid: 44cf1047731c5c243845ac70088dd972
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2572236292851511218
-    second: Trees_Maple
-  - first:
-      213: 6224024930817484846
-    second: Trees_Pine
-  - first:
-      213: -8911251428918342384
-    second: Trees_Oak
-  - first:
-      213: 2656247834339299217
-    second: Trees_Mahogany
+      213: 5715679701302701091
+    second: UI Icons_Eraser
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -103,85 +94,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Trees_Maple
+      name: UI Icons_Eraser
       rect:
         serializedVersion: 2
         x: 0
-        y: 144
-        width: 48
-        height: 96
-      alignment: 9
-      pivot: {x: 0.33333334, y: -0}
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2bf28c1b74b62b320800000000000000
-      internalID: 2572236292851511218
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Trees_Pine
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 144
-        width: 48
-        height: 96
-      alignment: 9
-      pivot: {x: 0.33333334, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e282d82c2bd206650800000000000000
-      internalID: 6224024930817484846
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Trees_Oak
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 144
-        width: 48
-        height: 96
-      alignment: 9
-      pivot: {x: 0.33333334, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 01d412b0a00e45480800000000000000
-      internalID: -8911251428918342384
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Trees_Mahogany
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 144
-        width: 48
-        height: 96
-      alignment: 9
-      pivot: {x: 0.33333334, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 19fc139f453ecd420800000000000000
-      internalID: 2656247834339299217
+      spriteID: 32cee06c76c225f40800000000000000
+      internalID: 5715679701302701091
       vertices: []
       indices: 
       edges: []

@@ -1,19 +1,22 @@
 fileFormatVersion: 2
-guid: 4ae04cb5077deed4fae790f5cf01a51a
+guid: 2442f51d06c4c434cade824a035d6e28
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2572236292851511218
-    second: Trees_Maple
+      213: -1557013538026691241
+    second: UI_Menu
   - first:
-      213: 6224024930817484846
-    second: Trees_Pine
+      213: 82707731993968007
+    second: UI_Tab
   - first:
-      213: -8911251428918342384
-    second: Trees_Oak
+      213: 1080825480604336155
+    second: UI_Slot
   - first:
-      213: 2656247834339299217
-    second: Trees_Mahogany
+      213: -9136572144232859775
+    second: UI_Slot_Active
+  - first:
+      213: 8586885197115800619
+    second: UI_Tab_Active
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -55,7 +58,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 16
@@ -103,85 +106,106 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Trees_Maple
+      name: UI_Menu
       rect:
         serializedVersion: 2
         x: 0
-        y: 144
-        width: 48
-        height: 96
-      alignment: 9
-      pivot: {x: 0.33333334, y: -0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 6, y: 6, z: 6, w: 6}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2bf28c1b74b62b320800000000000000
-      internalID: 2572236292851511218
+      spriteID: 755e173cf60646ae0800000000000000
+      internalID: -1557013538026691241
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Trees_Pine
+      name: UI_Tab
       rect:
         serializedVersion: 2
-        x: 48
-        y: 144
-        width: 48
-        height: 96
-      alignment: 9
-      pivot: {x: 0.33333334, y: 0}
+        x: 0
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e282d82c2bd206650800000000000000
-      internalID: 6224024930817484846
+      spriteID: 78dbda97e36d52100800000000000000
+      internalID: 82707731993968007
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Trees_Oak
+      name: UI_Slot
       rect:
         serializedVersion: 2
-        x: 96
-        y: 144
-        width: 48
-        height: 96
-      alignment: 9
-      pivot: {x: 0.33333334, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+        x: 0
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 2, y: 2, z: 2, w: 2}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 01d412b0a00e45480800000000000000
-      internalID: -8911251428918342384
+      spriteID: b10cc935c0ddffe00800000000000000
+      internalID: 1080825480604336155
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Trees_Mahogany
+      name: UI_Slot_Active
       rect:
         serializedVersion: 2
-        x: 144
-        y: 144
-        width: 48
-        height: 96
-      alignment: 9
-      pivot: {x: 0.33333334, y: 0}
+        x: 16
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 2, y: 2, z: 2, w: 2}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 187754eda00643180800000000000000
+      internalID: -9136572144232859775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Tab_Active
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 19fc139f453ecd420800000000000000
-      internalID: 2656247834339299217
+      spriteID: b2cb52d679eba2770800000000000000
+      internalID: 8586885197115800619
       vertices: []
       indices: 
       edges: []

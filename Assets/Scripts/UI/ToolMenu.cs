@@ -22,6 +22,6 @@ public class ToolMenu : MonoBehaviour
         openingT += (isOpen) ? Time.deltaTime / openingDuration : -Time.deltaTime / openingDuration;
         openingT = Mathf.Clamp(openingT, 0, 1);
 
-        transform.localScale = new Vector3(1, Mathf.SmoothStep(0, 1, openingT), 1);
+        transform.localScale = new Vector3(Mathf.SmoothStep(0, 1, openingT), 1, 1);
     }
 }

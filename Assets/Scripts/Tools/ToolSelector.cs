@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ToolSelector : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI currentToolText;
+    [SerializeField] private Text currentToolText;
 
     private Tool currentTool;
 
@@ -17,13 +17,13 @@ public class ToolSelector : MonoBehaviour
     public void SetEraserTool()
     {
         currentTool = new EraserTool();
-        currentToolText.text = "Current Tool: " + currentTool.GetName();
+        currentToolText.text = "Current Tool\n" + currentTool.GetName();
     }
 
     public void SetBuildingTool(BuildingInfo info)
     {
         currentTool = new BuildingTool(info);
-        currentToolText.text = "Current Tool: " + currentTool.GetName();
+        currentToolText.text = "Current Tool\n" + currentTool.GetName();
     }
 
     //////////////////
