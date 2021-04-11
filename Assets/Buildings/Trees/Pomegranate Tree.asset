@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f76619f4a4aa5249bd5ae8cc6cd0dd1, type: 3}
+  m_Name: Pomegranate Tree
+  m_EditorClassIdentifier: 
+  name: Pomegranate Tree
+  sprite: {fileID: 759678483730449176, guid: 4ae04cb5077deed4fae790f5cf01a51a, type: 3}
+  obstructionOffset: {x: 0, y: 0}
+  obstructionSize: {x: 2, y: 2}
+  absoluteObstructionSize: {x: 1, y: 1}
+  ignoreObstruction: 0
