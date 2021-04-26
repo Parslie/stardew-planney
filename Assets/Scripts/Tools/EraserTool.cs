@@ -16,8 +16,6 @@ public class EraserTool : Tool
 
     public override void OnRelease(Vector2 position, ref Building[,] buildings, bool[,] obstructions)
     {
-        Debug.Log("On Release: " + GetName());
-
         Building building = buildings[(int)position.x, (int)position.y];
 
         if (building != null)
@@ -28,11 +26,12 @@ public class EraserTool : Tool
 
     public override void OnHoldRelease(Vector2 position, Vector2 selectionSize, ref Building[,] buildings, bool[,] obstructions)
     {
-        Debug.Log("On Release Hold: " + GetName());
+        int deltaX = (int)Mathf.Sign(selectionSize.x);
+        int deltaY = (int)Mathf.Sign(selectionSize.y);
 
-        for (int x = (int)position.x; x < position.x + selectionSize.x; x++)
+        for (int x = (int)position.x; x != position.x + selectionSize.x; x += deltaX)
         {
-            for (int y = (int)position.y; y < position.y + selectionSize.y; y++)
+            for (int y = (int)position.y; y != position.y + selectionSize.y; y += deltaY)
             {
                 Building building = buildings[x, y];
 

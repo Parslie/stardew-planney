@@ -11,7 +11,6 @@ public class MapCanvas : MonoBehaviour
     [SerializeField] private ToolSelector toolSelector;
     [SerializeField] private SpriteRenderer toolGrid;
     [SerializeField] private SpriteRenderer toolPreviewer;
-    private Vector2 mouseCoordinates;
     private Vector2 clickCoordinates;
 
     private bool[,] obstructions;
@@ -38,6 +37,23 @@ public class MapCanvas : MonoBehaviour
                     obstructions[x, y] = map.obstructionMap.GetPixel(x, y) == Color.black;
     }
 
+    private Vector2 GetMouseCoordinates()
+    {
+        Vector2 coordinates = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        coordinates.x = Mathf.Floor(coordinates.x);
+        coordinates.y = Mathf.Floor(coordinates.y);
+
+        return coordinates;
+    }
+
+    private void UseTool(Tool tool, Vector2 coordinate, Vector2 area)
+    {
+        if (Mathf.Abs(area.x) > 1 || Mathf.Abs(area.y) > 1)
+            tool.OnHoldRelease(coordinate, area, ref buildings, obstructions);
+        else
+            tool.OnRelease(coordinate, ref buildings, obstructions);
+    }
+
     //////////////////
     // Unity Functions
 
@@ -49,46 +65,45 @@ public class MapCanvas : MonoBehaviour
     private void Update()
     {
         Tool currentTool = toolSelector.GetCurrentTool();
+        Vector2 mouseCoordinates = GetMouseCoordinates();
 
-        // Calculate mouse coordinates
-        mouseCoordinates = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mouseCoordinates.x = Mathf.Floor(mouseCoordinates.x);
-        mouseCoordinates.y = Mathf.Floor(mouseCoordinates.y);
-
-        // Handle tool preperations
         if (Input.GetMouseButtonDown(0))
             clickCoordinates = mouseCoordinates;
-        
-        // Handle tool usages
+
         if (Input.GetMouseButtonUp(0))
         {
-            if (toolGrid.bounds.size.x > 1 || toolGrid.bounds.size.y > 1)
-                currentTool.OnHoldRelease(toolGrid.bounds.min, toolGrid.bounds.size, ref buildings, obstructions);
-            else
-                currentTool.OnRelease(clickCoordinates, ref buildings, obstructions);
+            Vector2 offset;
+            offset.x = (toolGrid.size.x < 0) ? -1 : 0;
+            offset.y = (toolGrid.size.y < 0) ? -1 : 0;
+            UseTool(currentTool, toolGrid.transform.position + (Vector3)offset, toolGrid.size);
         }
 
-        // Update tool previewer
-        toolPreviewer.transform.position = mouseCoordinates;
-        toolPreviewer.sprite = currentTool.GetPreviewSprite();
-
-        // Update tool grid
         if (Input.GetMouseButton(0))
         {
-            Vector2 selectionSize = mouseCoordinates - clickCoordinates;
-            selectionSize.x += Mathf.Sign(selectionSize.x);
-            selectionSize.y += Mathf.Sign(selectionSize.y);
-            toolGrid.size = selectionSize;
+            // Update tool grid
+            Vector2 toolGridSize = mouseCoordinates - clickCoordinates;
+            toolGridSize.x += Mathf.Sign(toolGridSize.x);
+            toolGridSize.y += Mathf.Sign(toolGridSize.y);
+            toolGrid.size = toolGridSize;
 
-            Vector2 selectionOffset;
-            selectionOffset.x = (selectionSize.x < 0) ? 1 : 0;
-            selectionOffset.y = (selectionSize.y < 0) ? 1 : 0;
-            toolGrid.transform.position = clickCoordinates + selectionOffset;
+            Vector2 toolGridPos = clickCoordinates;
+            toolGridPos.x += (Mathf.Sign(toolGridSize.x) == -1) ? 1 : 0;
+            toolGridPos.y += (Mathf.Sign(toolGridSize.y) == -1) ? 1 : 0;
+            toolGrid.transform.position = toolGridPos;
+
+            // Update tool previewer
+            toolPreviewer.transform.position = clickCoordinates;
+            toolPreviewer.sprite = currentTool.GetPreviewSprite();
         }
         else
         {
+            // Update tool grid
             toolGrid.size = Vector2.one;
             toolGrid.transform.position = mouseCoordinates;
+
+            // Update tool previewer
+            toolPreviewer.transform.position = mouseCoordinates;
+            toolPreviewer.sprite = currentTool.GetPreviewSprite();
         }
     }
 }
